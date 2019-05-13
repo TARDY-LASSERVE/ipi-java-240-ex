@@ -41,12 +41,12 @@ Nous avons gagné du temps de retour de données et centraliser l'appel des obje
 ## Automatisation !
 
 - Créez une autre branche `spring-auto` à partir de `spring`
-- Remplacez la déclaration manuelle des beans dans `SpringApplication` par un scan automatique de Spring en ajoutant les annotations nécessaires sur les différentes classes.
-- Remplacez les injections effectuée manuellement par de l'autowiring.
+- Remplacez la déclaration manuelle des beans dans `SpringConfig` par un scan automatique de Spring en ajoutant les annotations nécessaires sur les différentes classes.
+- Remplacez les injections effectuées manuellement par de l'autowiring.
 - Vérifier que l'application fonctionne toujours.
 - Créez un fichier de `properties` et définissez une propriété `bitcoinService.cache` valorisée à `false` et utilisez cette propriété pour construire le bean `BitcoinService` utilisé dans la classe `Main`. Constatez que cela fonctionne toujours et qu'en redémarrant votre application après avoir passé cette propriété à `true`, le cache est bien utilisé.
 
 ## Spring Boot
 
-- Créez une autre branche `spring-auto` à partir de `spring-auto`
+- Créez une autre branche `springBoot-auto` à partir de `spring-auto`
 - Remplacez votre `pom.xml` par un `pom.xml` utilisant Spring Boot et convertissez votre application Spring normale en application Spring Boot console. Constatez la simplification (relative) du code et les possibilités maintenant à votre disposition !
