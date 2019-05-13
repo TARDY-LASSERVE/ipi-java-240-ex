@@ -9,6 +9,18 @@ public class ProduitManager {
 
     private List<Produit> produits = new ArrayList<>();
 
+    private WebPageManager webPageManager;
+
+    private BitcoinService bitcoinService;
+
+    public void setWebPageManager(WebPageManager webPageManager) {
+        this.webPageManager = webPageManager;
+    }
+
+    public void setBitcoinService(BitcoinService bitcoinService) {
+        this.bitcoinService = bitcoinService;
+    }
+
     /**
      * Méthode qui demande les caractéristiques d'un nouveau produit
      * à l'utilisateur et qui l'ajoute au catalogue
@@ -43,7 +55,6 @@ public class ProduitManager {
      * @throws IOException
      */
     public void afficherDetailProduit(Integer index) throws IOException {
-        BitcoinService bitcoinService = new BitcoinService();
         System.out.println(produits.get(index).toString() + ", " + bitcoinService.getBitcoinPrice(produits.get(index).getPrixEuro()) + " BTC");
     }
 
@@ -52,7 +63,6 @@ public class ProduitManager {
      * @throws IOException
      */
     public void initialiserCatalogue() throws IOException {
-        WebPageManager webPageManager = new WebPageManager();
         String catalogue = webPageManager.getPageContentsFromCacheIfExists("https://pjvilloud.github.io/ipi-java-240-cours/catalogue.txt");
         int nbProduits = 0;
         for(String line : catalogue.split("\n")){
