@@ -7,13 +7,17 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         ProduitManager pm = new ProduitManager();
-        BitcoinService bitcoinService = new BitcoinService();
+        BitcoinService bitcoinServiceInCache = new BitcoinService();
+        bitcoinServiceInCache.setForceRefresh(false);
+        BitcoinService bitcoinServiceOutCache = new BitcoinService();
+        bitcoinServiceOutCache.setForceRefresh(true);
         WebPageManager webPageManager = new WebPageManager();
 
-        pm.setBitcoinService(bitcoinService);
+        pm.setBitcoinService(bitcoinServiceInCache);
         pm.setWebPageManager(webPageManager);
 
-        bitcoinService.setWebPageManager(webPageManager);
+        bitcoinServiceInCache.setWebPageManager(webPageManager);
+        bitcoinServiceOutCache.setWebPageManager(webPageManager);
 
         System.out.println("Bienvenue !");
         while(true){
@@ -29,7 +33,7 @@ public class Main {
             int saisie = scanner.nextInt();
             switch (saisie){
                 case 1:
-                    System.out.println("1 BTC = " + bitcoinService.getBitcoinRate() + " €");
+                    System.out.println("1 BTC = " + bitcoinServiceOutCache.getBitcoinRate() + " €");
                     break;
                 case 2:
                     pm.ajouterProduit();
