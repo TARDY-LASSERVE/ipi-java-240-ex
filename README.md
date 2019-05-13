@@ -29,7 +29,7 @@ Nous avons gagné du temps de retour de données et centraliser l'appel des obje
 
 - Créez une branche `spring` à partir de `master`
 - Créez à l'aide de votre IDE un fichier `pom.xml` et ajoutez les dépendances nécessaires pour le framework Spring (version 5.1.6.RELEASE)
-- Créez une classe de configuration pour Spring appelée `SpringApplication` et la placer dans le package `java240`
+- Créez une classe de configuration pour Spring appelée `SpringConfig` et la placer dans le package `java240`
 - Ajoutez la configuration nécessaire pour définir un bean en singleton pour la classe `BitcoinService`
 - Modifiez la classe `Main` pour pouvoir utiliser ce bean dans la fonctionnalité de récupération du cours du bitcoin.
 - Faites de même avec `ProduitManager`. Avez-vous résolu les problèmes soulevés dans l'introduction ?
