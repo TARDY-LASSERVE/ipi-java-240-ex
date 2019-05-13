@@ -9,7 +9,7 @@ import java.util.StringJoiner;
 
 public class WebPageManager {
 
-    private HashMap<String, String> cacheContent = new HashMap<>();
+    private HashMap<String, String> cacheContent = new HashMap<String, String>();
 
     /**
      * Fait une requête GET à l'url passée en paramètre

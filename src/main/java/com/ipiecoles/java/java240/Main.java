@@ -1,23 +1,20 @@
 package com.ipiecoles.java.java240;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        ProduitManager pm = new ProduitManager();
-        BitcoinService bitcoinServiceInCache = new BitcoinService();
-        bitcoinServiceInCache.setForceRefresh(false);
-        BitcoinService bitcoinServiceOutCache = new BitcoinService();
-        bitcoinServiceOutCache.setForceRefresh(true);
-        WebPageManager webPageManager = new WebPageManager();
 
-        pm.setBitcoinService(bitcoinServiceInCache);
-        pm.setWebPageManager(webPageManager);
+        ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringConfig.class);
 
-        bitcoinServiceInCache.setWebPageManager(webPageManager);
-        bitcoinServiceOutCache.setWebPageManager(webPageManager);
+        BitcoinService bitcoinServiceWithoutCache = ctx.getBean("bitcoinServiceWithoutCache", BitcoinService.class);
+
+        ProduitManager pm = ctx.getBean("produitManager", ProduitManager.class);
 
         System.out.println("Bienvenue !");
         while(true){
@@ -26,14 +23,14 @@ public class Main {
             System.out.println("2 - Ajouter un produit au catalogue");
             System.out.println("3 - Voir tous les produits du catalogue");
             System.out.println("4 - Voir les détails d'un produit");
-            System.out.println("5 - Initialiser le catalogue");
+            //System.out.println("5 - Initialiser le catalogue");
             System.out.println("0 - Quitter");
 
             Scanner scanner = new Scanner(System.in);
             int saisie = scanner.nextInt();
             switch (saisie){
                 case 1:
-                    System.out.println("1 BTC = " + bitcoinServiceOutCache.getBitcoinRate() + " €");
+                    System.out.println("1 BTC = " + bitcoinServiceWithoutCache.getBitcoinRate() + " €");
                     break;
                 case 2:
                     pm.ajouterProduit();
@@ -45,9 +42,10 @@ public class Main {
                     System.out.println("Quel numéro de produit ?");
                     pm.afficherDetailProduit(scanner.nextInt());
                     break;
-                case 5:
+                /*case 5:
                     pm.initialiserCatalogue();
                     break;
+                */
                 case 0:
                     System.out.println("Au revoir !");
                     return;

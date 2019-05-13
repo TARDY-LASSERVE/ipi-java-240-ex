@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class ProduitManager {
 
-    private List<Produit> produits = new ArrayList<>();
+    private List<Produit> produits = new ArrayList<Produit>();
 
     private WebPageManager webPageManager;
 
