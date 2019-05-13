@@ -10,6 +10,9 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
+        //Pas d'@Autowired au-dessus (=en dehors du constructeur) car méthode static et le main n'est pas un bean
+        //De plus, nous ne pouvons instancier que des constantes (static variables) en dehors du constructeur
+
         ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringConfig.class);
 
         BitcoinService bitcoinServiceWithoutCache = ctx.getBean("bitcoinServiceWithoutCache", BitcoinService.class);
@@ -23,7 +26,7 @@ public class Main {
             System.out.println("2 - Ajouter un produit au catalogue");
             System.out.println("3 - Voir tous les produits du catalogue");
             System.out.println("4 - Voir les détails d'un produit");
-            //System.out.println("5 - Initialiser le catalogue");
+            System.out.println("5 - Initialiser le catalogue");
             System.out.println("0 - Quitter");
 
             Scanner scanner = new Scanner(System.in);
@@ -42,10 +45,9 @@ public class Main {
                     System.out.println("Quel numéro de produit ?");
                     pm.afficherDetailProduit(scanner.nextInt());
                     break;
-                /*case 5:
+                case 5:
                     pm.initialiserCatalogue();
                     break;
-                */
                 case 0:
                     System.out.println("Au revoir !");
                     return;

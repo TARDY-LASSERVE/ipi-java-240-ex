@@ -1,18 +1,18 @@
 package com.ipiecoles.java.java240;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.io.IOException;
 
+//Pas @Component car ce n'est pas un singleton
 public class BitcoinService {
 
     private Double rate = null;
 
     private Boolean forceRefresh = false;
 
+    @Autowired
     private WebPageManager webPageManager;
-
-    public void setWebPageManager(WebPageManager webPageManager) {
-        this.webPageManager = webPageManager;
-    }
 
     public void setForceRefresh(Boolean forceRefresh) {
         this.forceRefresh = forceRefresh;

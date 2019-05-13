@@ -1,25 +1,24 @@
 package com.ipiecoles.java.java240;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+@Service
 public class ProduitManager {
 
-    private List<Produit> produits = new ArrayList<Produit>();
+    private List<Produit> produits = new ArrayList<>();
 
+    @Autowired
     private WebPageManager webPageManager;
 
-    private BitcoinService bitcoinService;
-
-    public void setWebPageManager(WebPageManager webPageManager) {
-        this.webPageManager = webPageManager;
-    }
-
-    public void setBitcoinService(BitcoinService bitcoinService) {
-        this.bitcoinService = bitcoinService;
-    }
+    @Resource(name = "bitcoinServiceWithCache")
+    private BitcoinService bitcoinServiceWithCache;
 
     /**
      * Méthode qui demande les caractéristiques d'un nouveau produit
@@ -55,7 +54,7 @@ public class ProduitManager {
      * @throws IOException
      */
     public void afficherDetailProduit(Integer index) throws IOException {
-        System.out.println(produits.get(index).toString() + ", " + bitcoinService.getBitcoinPrice(produits.get(index).getPrixEuro()) + " BTC");
+        System.out.println(produits.get(index).toString() + ", " + bitcoinServiceWithCache.getBitcoinPrice(produits.get(index).getPrixEuro()) + " BTC");
     }
 
     /**
