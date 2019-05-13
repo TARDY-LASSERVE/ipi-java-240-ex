@@ -48,5 +48,5 @@ Nous avons gagné du temps de retour de données et centraliser l'appel des obje
 
 ## Spring Boot
 
-- Créez une autre branche `spring-auto` à partir de `spring-auto`
+- Créez une autre branche `springBoot-auto` à partir de `spring-auto`
 - Remplacez votre `pom.xml` par un `pom.xml` utilisant Spring Boot et convertissez votre application Spring normale en application Spring Boot console. Constatez la simplification (relative) du code et les possibilités maintenant à votre disposition !
