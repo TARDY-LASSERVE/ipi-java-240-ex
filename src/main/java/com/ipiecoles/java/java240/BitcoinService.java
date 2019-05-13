@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.io.IOException;
 
 //Pas @Component car ce n'est pas un singleton
+// SINON
+//Si @Component et @Primary alors l'appel dans ProduitManager.java devient un @Autowired et plus un @resource
 public class BitcoinService {
 
     private Double rate = null;
