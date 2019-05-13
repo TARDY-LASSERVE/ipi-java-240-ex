@@ -1,6 +1,7 @@
 package com.ipiecoles.java.java240;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -14,10 +15,13 @@ public class ProduitManager {
 
     private List<Produit> produits = new ArrayList<>();
 
+    @Value("${bitcoinService.urlCatalogue}")
+    private String urlCatalogue;
+
     @Autowired
     private WebPageManager webPageManager;
 
-    @Resource(name = "bitcoinServiceWithCache")
+    @Autowired // OU @Resource(name = "bitcoinServiceWithCache") si la classe BitcoinService n'est pas en @Component et @Primary
     private BitcoinService bitcoinServiceWithCache;
 
     /**
@@ -62,7 +66,7 @@ public class ProduitManager {
      * @throws IOException
      */
     public void initialiserCatalogue() throws IOException {
-        String catalogue = webPageManager.getPageContentsFromCacheIfExists("https://pjvilloud.github.io/ipi-java-240-cours/catalogue.txt");
+        String catalogue = webPageManager.getPageContentsFromCacheIfExists(urlCatalogue);
         int nbProduits = 0;
         for(String line : catalogue.split("\n")){
             String[] elements = line.split(";");
