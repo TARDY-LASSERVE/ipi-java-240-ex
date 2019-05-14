@@ -16,10 +16,12 @@ public class ProduitManager {
 
     private List<Produit> produits = new ArrayList<>();
 
-    //NB : Si c'est la valeur qui s'affiche entre côtes et pas seulement la référence,
-    //il suffit de supprimer au moins un caractère en fin de ligne pour que la référence
-    //s'écrive de nouveau. Etrange ???
-    @Value("${bitcoinService.urlCatalogue")
+    //NB : Si c'est la valeur qui s'affiche entre côtes et pas seulement la référence, il suffit de
+    // supprimer au moins un caractère en fin de ligne pour que la référence s'écrive de nouveau.
+    // Bien penser à remettre le }
+    // En fait, L'IDE précise la valeur afin que l'utilisateur càd moi puisse avoir la vraie valeur
+    // devant les yeux
+    @Value("${bitcoinService.urlCatalogue}")
     private String urlCatalogue;
 
     @Autowired

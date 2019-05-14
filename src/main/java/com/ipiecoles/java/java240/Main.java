@@ -1,24 +1,25 @@
 package com.ipiecoles.java.java240;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.Scanner;
 
-public class Main {
+@Component
+public class Main implements CommandLineRunner {
 
-    public static void main(String[] args) throws IOException {
+    @Autowired
+    private ProduitManager pm;
 
-        //Pas d'@Autowired au-dessus (=en dehors du constructeur) car méthode static et le main n'est pas un bean
-        //De plus, nous ne pouvons instancier que des constantes (static variables) en dehors du constructeur
+    @Autowired
+    @Qualifier("WithoutCache")
+    private BitcoinService bitcoinServiceWithoutCache;
 
-        System.out.println("Avant init contexte");
-        ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringConfig.class);
-        System.out.println("Après init contexte");
-
-        ProduitManager pm = ctx.getBean("produitManager", ProduitManager.class);
-        BitcoinService bitcoinServiceWithoutCache = ctx.getBean("bitcoinServiceWithoutCache", BitcoinService.class);
+    @Override
+    public void run(String[] args) throws IOException {
 
         System.out.println("Bienvenue !");
         while(true){

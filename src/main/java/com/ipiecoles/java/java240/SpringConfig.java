@@ -2,19 +2,29 @@ package com.ipiecoles.java.java240;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.*;
 
+@SpringBootApplication
+/*
+Inutile car SpringBoot gère automatiquement les annotations ci-dessous :
 @Configuration
-// L'annotation @ComponentScan permet de dire à Spring de chercher les beans dans
-// toutes les classes de ce package.
 @ComponentScan(basePackages = "com.ipiecoles.java.java240")
-@PropertySource("classpath:application.properties")
+@PropertySource("classpath:application.properties") devient inutile mais il faut que le fichier
+se nomme bien application.properties et que ce dernier soit dans le dossier 'resources'
+*/
 public class SpringConfig {
 
     @Value("${bitcoinService.forceRefresh}")
     private Boolean strForceRefresh;
 
+    public static void main(String[] args) {
+        SpringApplication.run(SpringConfig.class, args);
+    }
+
     @Bean(name = "bitcoinServiceWithoutCache")
+    @Qualifier("WithoutCache")
     @Scope("singleton") // facultatif car valeur par défaut
     public BitcoinService bitcoinServiceWithoutCache(){
         BitcoinService bitcoinService = new BitcoinService();

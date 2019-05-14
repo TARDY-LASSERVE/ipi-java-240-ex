@@ -7,6 +7,9 @@
     <groupId>com.ipiecoles.java</groupId>
     <artifactId>ipi-java-240-ex</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <name>java240</name>
+    <description>TP sur SpringBoot</description>
+
     <build>
         <plugins>
             <plugin>
@@ -20,28 +23,28 @@
         </plugins>
     </build>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.4.RELEASE</version>
+        <relativePath/>
+    </parent>
+
     <properties>
         <java.version>1.8</java.version>
     </properties>
 
     <dependencies>
+        <!-- Pour info, toutes les dépendances ayant un nom commençant par
+        spring-boot-starter précise qu'elles incluent ce dernier. Par ex, spring-boot-starter-jpa inclus
+         donc le spring-boot-starter alors inutile de l'ajouter, ou le garder, en dépendance -->
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>5.1.6.RELEASE</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-beans</artifactId>
-            <version>5.1.6.RELEASE</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>5.1.6.RELEASE</version>
-        </dependency>
+        <!-- NB : SpringBoot gère une bdd en mémoire sauf si nous ajoutons la dépendance mysql ou autre
+        afin de gérer notre propre bdd externe à l'appli -->
     </dependencies>
     
 </project>

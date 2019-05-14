@@ -18,6 +18,10 @@ public class BitcoinService {
 
     private Boolean forceRefresh = false;
 
+    //NB : Si c'est la valeur qui s'affiche entre côtes et pas seulement la référence, c'est l'IDE qui
+    // précise la valeur afin que l'utilisateur càd moi puisse avoir la vraie valeur devant les yeux.
+    // Pour voir la référence, il suffit de supprimer au moins un caractère en fin de ligne pour que la
+    // référence s'écrive de nouveau. Bien penser à remettre le }
     @Value("${bitcoinService.urlApi}")
     private String urlApi;
 
