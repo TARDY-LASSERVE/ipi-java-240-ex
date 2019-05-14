@@ -3,12 +3,14 @@ package com.ipiecoles.java.java240;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.Scanner;
 
 @Component
+@Profile("!test") //Afin que cette classe ne soit pas lancée pendant les tests
 public class Main implements CommandLineRunner {
 
     @Autowired

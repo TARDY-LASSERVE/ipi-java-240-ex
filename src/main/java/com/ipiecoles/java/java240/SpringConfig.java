@@ -44,6 +44,5 @@ public class SpringConfig {
         //comme ça l'initialisation de cette valeur est à un seul endroit dans toute l'appli !!
         return bitcoinService;
     }
-//Dans ce cas-là, si j'y vais je reviens à lase départ puisque j'ai tourné en rond.
-    //Emotion stressante et dévalorisante
+
 }

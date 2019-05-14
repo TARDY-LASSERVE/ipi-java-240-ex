@@ -3,9 +3,19 @@ package com.ipiecoles.java.java240;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.PostConstruct;
+import javax.persistence.EntityNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +36,9 @@ public class ProduitManager {
 
     @Autowired
     private WebPageManager webPageManager;
+
+    @Autowired
+    private ProduitRepository produitRepository; //Ajout du rapport entre la classe Produit et la bdd en mémoire vive (h2)
 
     @Autowired // OU @Resource(name = "bitcoinServiceWithCache") si la classe BitcoinService n'est pas en @Component et @Primary
     @Qualifier("withCache")
@@ -84,7 +97,9 @@ public class ProduitManager {
             produits.add(new Produit(elements[0], Double.parseDouble(elements[1])));
             nbProduits++;
         }
+        produitRepository.saveAll(produits);
         System.out.println("Ajout de " + nbProduits + " produits !");
+        System.out.println("Ajout en BDD mémoire de " + produitRepository.count() + " produits !");
     }
 
 }

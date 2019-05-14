@@ -1,10 +1,24 @@
 package com.ipiecoles.java.java240;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Produit")
 public class Produit {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+
+    @Column
     private String intitule;
 
+    @Column
     private Double prixEuro;
+
+    public Produit() { //Toujours mettre un constructeur par défaut pour une entité
+
+    }
 
     public Produit(String intitule, Double prixEuro) {
         this.intitule = intitule;
