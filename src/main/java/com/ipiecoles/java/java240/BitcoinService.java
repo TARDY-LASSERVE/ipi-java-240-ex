@@ -29,6 +29,10 @@ public class BitcoinService {
     }
 
 
+    public BitcoinService(){
+        System.out.println("Instanciation du BitcoinService");
+    }
+
     /**
      * Méthode qui renvoie le cours du Bitcoin
      * @return le cours du bitcoin

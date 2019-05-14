@@ -1,10 +1,11 @@
 package com.ipiecoles.java.java240;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,15 +16,22 @@ public class ProduitManager {
 
     private List<Produit> produits = new ArrayList<>();
 
-    @Value("${bitcoinService.urlCatalogue}")
+    //NB : Si c'est la valeur qui s'affiche entre côtes et pas seulement la référence,
+    //il suffit de supprimer au moins un caractère en fin de ligne pour que la référence
+    //s'écrive de nouveau. Etrange ???
+    @Value("${bitcoinService.urlCatalogue")
     private String urlCatalogue;
 
     @Autowired
     private WebPageManager webPageManager;
 
     @Autowired // OU @Resource(name = "bitcoinServiceWithCache") si la classe BitcoinService n'est pas en @Component et @Primary
+    @Qualifier("withCache")
     private BitcoinService bitcoinServiceWithCache;
 
+    public ProduitManager(){
+        System.out.println("Instanciation du ProduitManager");
+    }
     /**
      * Méthode qui demande les caractéristiques d'un nouveau produit
      * à l'utilisateur et qui l'ajoute au catalogue
@@ -65,6 +73,7 @@ public class ProduitManager {
      * Méthode qui initialise le catalogue à partir d'un fichier distant.
      * @throws IOException
      */
+    @PostConstruct
     public void initialiserCatalogue() throws IOException {
         String catalogue = webPageManager.getPageContentsFromCacheIfExists(urlCatalogue);
         int nbProduits = 0;

@@ -13,11 +13,12 @@ public class Main {
         //Pas d'@Autowired au-dessus (=en dehors du constructeur) car méthode static et le main n'est pas un bean
         //De plus, nous ne pouvons instancier que des constantes (static variables) en dehors du constructeur
 
+        System.out.println("Avant init contexte");
         ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringConfig.class);
-
-        BitcoinService bitcoinServiceWithoutCache = ctx.getBean("bitcoinServiceWithoutCache", BitcoinService.class);
+        System.out.println("Après init contexte");
 
         ProduitManager pm = ctx.getBean("produitManager", ProduitManager.class);
+        BitcoinService bitcoinServiceWithoutCache = ctx.getBean("bitcoinServiceWithoutCache", BitcoinService.class);
 
         System.out.println("Bienvenue !");
         while(true){

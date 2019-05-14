@@ -1,6 +1,5 @@
 package com.ipiecoles.java.java240;
 
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -14,6 +13,10 @@ import java.util.StringJoiner;
 public class WebPageManager {
 
     private HashMap<String, String> cacheContent = new HashMap<>();
+
+    public WebPageManager(){
+        System.out.println("Instanciation du WebPageManager");
+    }
 
     /**
      * Fait une requête GET à l'url passée en paramètre

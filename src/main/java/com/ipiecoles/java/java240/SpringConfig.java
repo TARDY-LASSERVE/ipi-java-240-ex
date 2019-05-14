@@ -1,5 +1,6 @@
 package com.ipiecoles.java.java240;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
 
@@ -22,6 +23,7 @@ public class SpringConfig {
     }
 
     @Bean(name = "bitcoinServiceWithCache")
+    @Qualifier("withCache")
     public BitcoinService bitcoinServiceWithCache(){
         BitcoinService bitcoinService = new BitcoinService();
         bitcoinService.setForceRefresh(strForceRefresh);
